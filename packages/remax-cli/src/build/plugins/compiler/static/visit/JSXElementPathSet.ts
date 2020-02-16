@@ -26,11 +26,6 @@ export default class JSXElementPathSet {
     this.paths.push({ path, module, templateID, isEntry });
   }
 
-  public clear() {
-    this.paths = [];
-    this.id = 0;
-  }
-
   public remove(module: string) {
     this.paths.filter(p => p.module !== module);
   }

@@ -268,17 +268,6 @@ export function wrappedByElement(
 }
 
 /**
- * 用 <plain-text-leaf> 标签包裹，用于处理单文本节点表达式
- *
- */
-export function wrappedByPlainTextLeaf(
-  node: t.JSXExpressionContainer,
-  path: NodePath<t.JSXExpressionContainer>
-) {
-  wrappedByElement('plain-text-leaf', node, path);
-}
-
-/**
  * 用 <expression-block> 标签包裹，用于处理无法静态化的标签和表达式
  *
  */
