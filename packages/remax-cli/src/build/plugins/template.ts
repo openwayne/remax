@@ -327,8 +327,6 @@ export default function template(
         })
       );
 
-      staticCompiler.jsxElementPathSet.clear();
-
       templateAssets.forEach(file => {
         this.emitFile({
           type: 'asset',

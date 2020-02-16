@@ -47,6 +47,9 @@ function isEntryPath(node: t.JSXElement) {
  */
 export default function visitJSXElement() {
   return {
+    pre(state: any) {
+      jsxElementPathSet.remove(state.opts.filename);
+    },
     visitor: {
       JSXElement: (path: NodePath<t.JSXElement>, state: any) => {
         if (!shouldBeTemplate(path)) {

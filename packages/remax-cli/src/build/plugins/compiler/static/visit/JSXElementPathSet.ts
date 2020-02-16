@@ -31,6 +31,10 @@ export default class JSXElementPathSet {
     this.id = 0;
   }
 
+  public remove(module: string) {
+    this.paths.filter(p => p.module !== module);
+  }
+
   private paths: JSXElementPath[] = [];
   private id = 0;
 
