@@ -1,7 +1,7 @@
 
 <template name="TPL_1">
-  <view data-rid="{{node.props['data-rid']}}" >
-  <text data-rid="{{node.children[0].props['data-rid']}}" >
+  <view  >
+  <text  >
   {{'react component'}}
 </text>
 
@@ -36,7 +36,7 @@
 
 </block>
 
-<text data-rid="{{node.children[3].props['data-rid']}}" >
+<text  >
   {{'Remax.Text'}}
 </text>
 
@@ -50,8 +50,7 @@
 
 </block>
 
-<view class="className"
-  data-rid="{{node.children[6].props['data-rid']}}" >
+<view class="className" >
   {{'Count: '}}
 <block  >
   <block a:if="{{node.children[6].children[1].children}}">
@@ -68,12 +67,11 @@
 </view>
 
 <view id="{{node.children[7].props['id']}}"
-  class="class"
-  data-rid="{{node.children[7].props['data-rid']}}" >
+  class="class" >
   {{'view'}}
 </view>
 
-<view data-rid="{{node.children[8].props['data-rid']}}" >
+<view  >
   {{'custom view'}}
 </view>
 
@@ -126,12 +124,11 @@
   onAnimationEnd="{{node.children[11].props['onAnimationEnd']}}"
   onAppear="{{node.children[11].props['onAppear']}}"
   onDisappear="{{node.children[11].props['onDisappear']}}"
-  onFirstAppear="{{node.children[11].props['onFirstAppear']}}"
-  data-rid="{{node.children[11].props['data-rid']}}" >
+  onFirstAppear="{{node.children[11].props['onFirstAppear']}}" >
   {{'Spread Attributes View'}}
 </view>
 
-<text data-rid="{{node.children[12].props['data-rid']}}" >
+<text  >
   {{'long long long long long long long long long long long long text long long long long long long long long long long long long text '}}
 </text>
 
@@ -166,7 +163,7 @@
 
 </block>
 
-<text data-rid="{{node.children[18].props['data-rid']}}" >
+<text  >
   {{ node.children[18].children[0].text }}
 
 </text>
@@ -176,14 +173,14 @@
 </template>
 
 <template name="TPL_3">
-  <view data-rid="{{node.props['data-rid']}}" >
+  <view  >
   {{'create element children 1'}}
 </view>
 
 </template>
 
 <template name="TPL_4">
-  <view data-rid="{{node.props['data-rid']}}" >
+  <view  >
   {{'array map: '}}
 <block  >
   <block a:if="{{node.children[1].children}}">
@@ -202,16 +199,15 @@
 </template>
 
 <template name="TPL_5">
-  <view data-rid="{{node.props['data-rid']}}" >
+  <view  >
   {{'Conditional View'}}
 </view>
 
 </template>
 
 <template name="TPL_6">
-  <view entry="{{node.props['entry']}}"
-  data-rid="{{node.props['data-rid']}}" >
-  <view data-rid="{{node.children[0].props['data-rid']}}" >
+  <view entry="{{node.props['entry']}}" >
+  <view  >
   {{'entry'}}
 </view>
 
@@ -220,7 +216,7 @@
 </template>
 
 <template name="TPL_7">
-  <view data-rid="{{node.props['data-rid']}}" >
+  <view  >
   {{'remax window'}}
 </view>
 
@@ -231,7 +227,6 @@
   
 <template name="TPL_ddd">
   <ddd 
-    data-rid="{{node.props['data-rid']}}" 
   >
     <template is="TPL_TRAVERSAL" data="{{root: node}}" />
   </ddd>
@@ -285,7 +280,6 @@
 <template name="TPL_text">
   <text 
     class="{{node.props['class']}}" 
-    data-rid="{{node.props['data-rid']}}" 
     decode="{{node.props['decode']}}" 
     id="{{node.props['id']}}" 
     number-of-lines="{{node.props['number-of-lines']}}" 
@@ -305,7 +299,6 @@
     _tid="{{node.props['_tid']}}" 
     animation="{{node.props['animation']}}" 
     class="{{node.props['class']}}" 
-    data-rid="{{node.props['data-rid']}}" 
     disable-scroll="{{node.props['disable-scroll']}}" 
     hidden="{{node.props['hidden']}}" 
     hover-class="{{node.props['hover-class']}}" 
