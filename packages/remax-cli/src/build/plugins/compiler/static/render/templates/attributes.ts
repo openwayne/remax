@@ -39,7 +39,7 @@ function createAttributeValueTemplate(
     }
   }
 
-  // 附加的一些默认属性，没有 value，如 data-rid
+  // 附加的一些默认属性，没有 value
   if (!value) {
     template = `{{${dataPath}.props['${attributeName}']}}`;
   }
@@ -89,14 +89,6 @@ export function createAttributesTemplate(
           createAttributeValueTemplate(prop, dataPath, attr.value as any),
         ];
       });
-  }
-
-  // 默认都加上 data-rid 属性，block 标签不用处理
-  if (componentType !== 'block') {
-    template.push([
-      'data-rid',
-      createAttributeValueTemplate('data-rid', dataPath),
-    ]);
   }
 
   return template.map(([prop, value]) => `${prop}=${value}`).join(SEPARATOR);
