@@ -164,7 +164,7 @@ export default function rollupConfig(
       extract: path.join(
         options.cwd,
         options.output,
-        'app' + API.getMeta().style
+        'app' + API.getMeta({ remaxOptions: options }).style
       ),
       ...postcssConfig.options,
       modules: cssModuleConfig,
