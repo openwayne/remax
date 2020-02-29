@@ -28,6 +28,10 @@ export default async function build(app: string, target: string) {
     },
     false
   );
+  rollupOptions.output = {
+    ...rollupOptions.output,
+    chunkFileNames: '[name].js',
+  };
   const bundle = await rollup.rollup(rollupOptions);
   const result = await bundle.generate(
     rollupOptions.output! as rollup.OutputOptions
