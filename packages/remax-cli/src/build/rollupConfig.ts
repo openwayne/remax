@@ -68,15 +68,9 @@ export default function rollupConfig(
 
   let babels = [
     babel({
-      include: entries.pages,
+      include: [entries.app, ...entries.pages],
       extensions: without(extensions, '.json'),
-      usePlugins: [nativeComponentsBabelPlugin(options), page],
-      reactPreset: false,
-    }),
-    babel({
-      include: entries.app,
-      extensions: without(extensions, '.json'),
-      usePlugins: [nativeComponentsBabelPlugin(options), app],
+      usePlugins: [app(entries.app), page(entries.pages)],
       reactPreset: false,
     }),
     babel({
@@ -89,29 +83,19 @@ export default function rollupConfig(
   if (options.compiler === 'static') {
     babels = [
       babel({
+        include: [entries.app, ...entries.pages],
         extensions: without(extensions, '.json'),
-        usePlugins: [
-          nativeComponentsBabelPlugin(options),
-          staticCompiler.preprocess,
-          staticCompiler.visit,
-        ],
-        reactPreset: false,
-      }),
-      babel({
-        include: entries.pages,
-        extensions: without(extensions, '.json'),
-        usePlugins: [page],
-        reactPreset: false,
-      }),
-      babel({
-        include: entries.app,
-        extensions: without(extensions, '.json'),
-        usePlugins: [app],
+        usePlugins: [app(entries.app), page(entries.pages)],
         reactPreset: false,
       }),
       babel({
         extensions: without(extensions, '.json'),
-        usePlugins: [components(options)],
+        usePlugins: [staticCompiler.preprocess, staticCompiler.visit],
+        reactPreset: false,
+      }),
+      babel({
+        extensions: without(extensions, '.json'),
+        usePlugins: [nativeComponentsBabelPlugin(options), components(options)],
         reactPreset: true,
       }),
     ];

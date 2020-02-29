@@ -4,26 +4,28 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var _rollupPluginBabelHelpers = require('./_virtual/_rollupPluginBabelHelpers.js');
 var React = require('react');
+var createAppConfig = require('../../../npm/remax/esm/createAppConfig.js');
+require('../../../npm/remax/esm/index.js');
 
-var _App =
-/*#__PURE__*/
-function (_React$Component) {
-  _rollupPluginBabelHelpers.inherits(_App2, _React$Component);
+var _ref = /*#__PURE__*/function (_React$Component) {
+  _rollupPluginBabelHelpers.inherits(_ref, _React$Component);
 
-  function _App2() {
-    _rollupPluginBabelHelpers.classCallCheck(this, _App2);
+  function _ref() {
+    _rollupPluginBabelHelpers.classCallCheck(this, _ref);
 
-    return _rollupPluginBabelHelpers.possibleConstructorReturn(this, _rollupPluginBabelHelpers.getPrototypeOf(_App2).apply(this, arguments));
+    return _rollupPluginBabelHelpers.possibleConstructorReturn(this, _rollupPluginBabelHelpers.getPrototypeOf(_ref).apply(this, arguments));
   }
 
-  _rollupPluginBabelHelpers.createClass(_App2, [{
+  _rollupPluginBabelHelpers.createClass(_ref, [{
     key: "render",
     value: function render() {
       return this.props.children;
     }
   }]);
 
-  return _App2;
+  return _ref;
 }(React.Component);
 
-exports.default = _App;
+var app = App(createAppConfig.default(_ref));
+
+exports.default = app;
