@@ -1,9 +1,11 @@
 import * as t from '@babel/types';
-import { jsxElementPathSet } from '../../visit';
 import * as helpers from '../../helpers';
 import { NodePath } from '@babel/traverse';
 import JSXElement from './JSXElement';
 import JSXExpressionContainer from './JSXExpressionContainer';
+import TemplateInfoSet from './TemplateInfoSet';
+
+export const templateInfoSet = new TemplateInfoSet();
 
 /**
  * 创建单个原生模板
@@ -14,7 +16,7 @@ import JSXExpressionContainer from './JSXExpressionContainer';
  * @param {(Array<string | number>)} dataPath
  * @returns {string}
  */
-function createTemplate(
+export function createTemplate(
   element:
     | t.JSXElement
     | t.JSXText
@@ -44,27 +46,4 @@ function createTemplate(
   // 未知使用场景
 
   return '';
-}
-
-/**
- * 生成原生模板片段
- *
- * @export
- * @returns
- */
-export default function createTemplates() {
-  const templates = jsxElementPathSet
-    .values()
-    .map(({ path, module, templateID, isEntry }) => {
-      const element = path.node;
-
-      return {
-        templateID,
-        content: createTemplate(element, path, module, ['node']),
-        module,
-        isEntry,
-      };
-    });
-
-  return templates;
 }

@@ -19,14 +19,7 @@ function pageUID(pagePath: string) {
 }
 
 function renderOptions(options: RemaxOptions) {
-  let templates: any[] = [];
-
-  if (options.compiler === 'static') {
-    templates = staticCompiler.renderTemplates();
-  }
-
   return {
-    templates,
     components: sortBy(
       getComponents(options).concat(Object.values(getNativeComponents())),
       'id'

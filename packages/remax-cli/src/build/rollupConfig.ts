@@ -90,7 +90,17 @@ export default function rollupConfig(
       }),
       babel({
         extensions: without(extensions, '.json'),
-        usePlugins: [staticCompiler.preprocess, staticCompiler.visit],
+        usePlugins: [staticCompiler.preprocess],
+        reactPreset: false,
+      }),
+      babel({
+        extensions: without(extensions, '.json'),
+        usePlugins: [staticCompiler.render],
+        reactPreset: false,
+      }),
+      babel({
+        extensions: without(extensions, '.json'),
+        usePlugins: [staticCompiler.postProcess],
         reactPreset: false,
       }),
       babel({

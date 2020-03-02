@@ -3,6 +3,7 @@ import { RemaxOptions, Meta } from 'remax-types';
 import ejs from 'ejs';
 import winPath from '../../../../../winPath';
 import { TEMPLATE_ID_ATTRIBUTE_NAME } from '../constants';
+import { templateInfoSet } from './templates';
 
 export async function renderPage(
   pageFile: string,
@@ -16,12 +17,14 @@ export async function renderPage(
     path.extname(pageFile)
   )}${meta.template.extension}`;
 
-  const entries = renderOptions.templates.filter(
+  const templates = templateInfoSet.values();
+  const entries = templates.filter(
     (template: any) =>
       template.isEntry &&
       template.module === path.join(options.cwd, options.rootDir, pageFile)
   );
 
+  renderOptions.templates = templates;
   renderOptions.entries = entries;
   renderOptions.baseTemplate = winPath(
     path.relative(path.dirname(pageFile), `base${meta.template.extension}`)
@@ -51,7 +54,9 @@ export async function renderCommon(
   createRenderOptions: Function
 ) {
   const renderOptions = createRenderOptions(options);
+  const templates = templateInfoSet.values();
 
+  renderOptions.templates = templates;
   renderOptions.TEMPLATE_PROP = TEMPLATE_ID_ATTRIBUTE_NAME;
 
   let code: string = await ejs.renderFile(meta.ejs.base!, renderOptions, {

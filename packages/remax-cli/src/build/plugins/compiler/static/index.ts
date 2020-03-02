@@ -1,4 +1,5 @@
 export { default as preprocess } from './preprocess';
-export { default as visit, jsxElementPathSet } from './visit';
-export { default as renderTemplates } from './render/templates';
+export { default as postProcess } from './postProcess';
+export { default as render } from './render';
+export { templateInfoSet } from './render/templates';
 export { renderCommon, renderPage } from './render/asset';
