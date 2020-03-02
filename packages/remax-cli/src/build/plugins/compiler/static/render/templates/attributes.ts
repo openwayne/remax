@@ -3,6 +3,7 @@ import {
   TEMPLATE_ID_ATTRIBUTE_NAME,
   REACT_KEY_ATTRIBUTE_NAME,
   LEAF_ATTRIBUTE_NAME,
+  ENTRY_ATTRIBUTE_NAME,
 } from '../../constants';
 import API from '../../../../../../API';
 
@@ -20,6 +21,11 @@ function createAttributeValueTemplate(
   value?: t.StringLiteral | t.JSXExpressionContainer
 ) {
   let template = '';
+  // case: 无 value，当做 true 处理
+  if (value === null) {
+    template = 'true';
+  }
+
   // case: Literal
   // 直接静态化
   if (t.isLiteral(value)) {
@@ -80,6 +86,8 @@ export function createAttributesTemplate(
       .filter(attr => attr.name.name !== REACT_KEY_ATTRIBUTE_NAME)
       // leaf 属性 不渲染
       .filter(attr => attr.name.name !== LEAF_ATTRIBUTE_NAME)
+      // entry 属性 不渲染
+      .filter(attr => attr.name.name !== ENTRY_ATTRIBUTE_NAME)
       .map(attr => {
         // t.JSXNamespacedName 的 case 暂不处理
         const name = attr.name.name as string;

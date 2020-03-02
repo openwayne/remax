@@ -15,6 +15,11 @@ export default function postProcess() {
       JSXAttribute: (path: NodePath<t.JSXAttribute>) => {
         const { node } = path;
 
+        // case: Null
+        if (node.value === null) {
+          path.remove();
+        }
+
         // case: Literal 属性
         if (t.isLiteral(node.value)) {
           path.remove();

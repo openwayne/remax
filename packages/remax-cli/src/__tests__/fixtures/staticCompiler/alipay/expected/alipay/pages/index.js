@@ -59,9 +59,7 @@ var DDD = createHostComponent.default('ddd');
 
 function ReactComp(_ref) {
   var children = _ref.children;
-  return React.createElement(index$2.default, {
-    _tid: "1"
-  }, React.createElement(index$9.default, null, "react component"), React.createElement("expression-block", null, React.Children.map(children, function (child, index) {
+  return React.createElement(index$2.default, null, React.createElement(index$9.default, null, "react component"), React.createElement("expression-block", null, React.Children.map(children, function (child, index) {
     return React.cloneElement(child, {
       id: 'reactComp' + index
     });
@@ -86,30 +84,17 @@ function _ref2() {
       showPlainText = _React$useState6[0];
 
   var plainText = 'plain-text-leaf';
-  return React.createElement("block", {
-    _tid: "2"
-  }, React.createElement("block", null, "Fragment"), React.createElement("block", null, "React.Fragment"), React.createElement("expression-block", null, React.createElement(DDD, null)), React.createElement(index$9.default, null, "Remax.Text"), React.createElement("expression-block", null, React.createElement(NativeComponent, null)), React.createElement("expression-block", null, React.createElement(ReactComp, null, React.createElement(index$2.default, null, "React Component First Child"), React.createElement("expression-block", null, 'React Component Second Child'))), React.createElement(index$2.default, {
-    className: "className"
-  }, "Count: ", React.createElement("expression-block", null, count)), React.createElement(index$2.default, {
-    id: count,
-    className: 'class'
+  return React.createElement("block", null, React.createElement("block", null, "Fragment"), React.createElement("block", null, "React.Fragment"), React.createElement("expression-block", null, React.createElement(DDD, null)), React.createElement(index$9.default, null, "Remax.Text"), React.createElement("expression-block", null, React.createElement(NativeComponent, null)), React.createElement("expression-block", null, React.createElement(ReactComp, null, React.createElement(index$2.default, null, "React Component First Child"), React.createElement("expression-block", null, 'React Component Second Child'))), React.createElement(index$2.default, null, "Count: ", React.createElement("expression-block", null, count)), React.createElement(index$2.default, {
+    id: count
   }, "view"), React.createElement(index$2.default, null, "custom view"), React.createElement("expression-block", null, React.createElement('view', {
     id: 'view'
-  }, [React.createElement(index$2.default, {
-    key: "1",
-    _tid: "3"
-  }, "create element children 1"), React.createElement('view', {
+  }, [React.createElement(index$2.default, null, "create element children 1"), React.createElement('view', {
     key: '2'
   })])), React.createElement("expression-block", null, [1, 2, 3].map(function (item) {
     return React.createElement(index$2.default, {
-      key: item,
-      _tid: "4"
+      key: item
     }, "array map: ", React.createElement("expression-block", null, item));
-  })), React.createElement(index$2.default, props, "Spread Attributes View"), React.createElement(index$9.default, null, "long long long long long long long long long long long long text long long long long long long long long long long long long text"), React.createElement("expression-block", null, React.createElement(index$z.default, null)), React.createElement("expression-block", null, 'Literal Expression'), React.createElement("expression-block", null, React.createElement(Deep.Object.View, null, "Deep Object View")), React.createElement("expression-block", null, React.createElement(RenameView, null, "Rename View")), React.createElement("expression-block", null, show && React.createElement(index$2.default, {
-    _tid: "5"
-  }, "Conditional View")), React.createElement(index$9.default, {
-    leaf: true
-  }, showPlainText && plainText, " ", showPlainText && '第二段', ' ', showPlainText && plainText));
+  })), React.createElement(index$2.default, props, "Spread Attributes View"), React.createElement(index$9.default, null, "long long long long long long long long long long long long text long long long long long long long long long long long long text"), React.createElement("expression-block", null, React.createElement(index$z.default, null)), React.createElement("expression-block", null, 'Literal Expression'), React.createElement("expression-block", null, React.createElement(Deep.Object.View, null, "Deep Object View")), React.createElement("expression-block", null, React.createElement(RenameView, null, "Rename View")), React.createElement("expression-block", null, show && React.createElement(index$2.default, null, "Conditional View")), React.createElement(index$9.default, null, showPlainText && plainText, " ", showPlainText && '第二段', ' ', showPlainText && plainText));
 }
 
 var index = Page(createPageConfig.default(_ref2));

@@ -42,7 +42,7 @@ export default function Index() {
       <Remax.Text>Remax.Text</Remax.Text>
       <NativeComponent />
       <ReactComp>
-        <View>React Component First Child</View>
+        <View show>React Component First Child</View>
         {'React Component Second Child'}
       </ReactComp>
       <View className="className">Count: {count}</View>
