@@ -236,6 +236,7 @@
   
 <template name="TPL_view">
   <view 
+    _tid="{{node.props['_tid']}}" 
     animation="{{node.props['animation']}}" 
     class="{{node.props['class']}}" 
     disable-scroll="{{node.props['disable-scroll']}}" 
