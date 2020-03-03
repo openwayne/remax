@@ -1,6 +1,12 @@
 import * as t from '@babel/types';
 import { NodePath } from '@babel/traverse';
-import { BLOCK, EXPRESSION_BLOCK, LEAF, TEMPLATE_ID } from './constants';
+import {
+  BLOCK,
+  EXPRESSION_BLOCK,
+  LEAF,
+  TEMPLATE_ID,
+  VOID_BLOCK,
+} from './constants';
 
 /**
  * 从 JSXElement 中取出 Host Component 的名称
@@ -306,6 +312,24 @@ export function replacedWithBlock(
       t.jsxOpeningElement(t.jsxIdentifier(BLOCK), []),
       t.jsxClosingElement(t.jsxIdentifier(BLOCK)),
       node.children,
+      false
+    )
+  );
+}
+
+/**
+ * 将标签替换为 <void-block>
+ *
+ * @export
+ * @param {(t.JSXElement)} node
+ * @param {NodePath} path
+ */
+export function replacedWithVoidBlock(node: t.JSXElement, path: NodePath) {
+  path.replaceWith(
+    t.jsxElement(
+      t.jsxOpeningElement(t.jsxIdentifier(VOID_BLOCK), []),
+      t.jsxClosingElement(t.jsxIdentifier(VOID_BLOCK)),
+      [],
       false
     )
   );
