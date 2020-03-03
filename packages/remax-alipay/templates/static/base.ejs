@@ -10,7 +10,7 @@
   props: component.props,
   id: component.id,
   view: viewComponent,
-  TEMPLATE_PROP: TEMPLATE_PROP
+  TEMPLATE_ID: TEMPLATE_ID
   })
 %>
   <% } else if (component.additional) { %>
@@ -34,7 +34,7 @@
 
 <!-- for default render -->
 <template name="TPL_DEFAULT">
-  <template a:if="{{root.props.<%=TEMPLATE_PROP%> > 0}}" is="{{'TPL_' + root.props.<%=TEMPLATE_PROP%>}}" data="{{ node: root }}" />
+  <template a:if="{{root.props.<%=TEMPLATE_ID%> > 0}}" is="{{'TPL_' + root.props.<%=TEMPLATE_ID%>}}" data="{{ node: root }}" />
   <template a:else is="{{ 'TPL_' + root.type }}" data="{{ node: root }}" />
 </template>
 
@@ -42,10 +42,10 @@
 <template name="TPL_TRAVERSAL">
   <block a:if="{{root.children}}">
     <block a:for="{{root.children}}" key="{{item.id}}">
-      <template a:if="{{item.props.<%=TEMPLATE_PROP%> > 0}}" is="{{'TPL_' + item.props.<%=TEMPLATE_PROP%>}}" data="{{ node: item }}" />
+      <template a:if="{{item.props.<%=TEMPLATE_ID%> > 0}}" is="{{'TPL_' + item.props.<%=TEMPLATE_ID%>}}" data="{{ node: item }}" />
       <template a:else is="{{ 'TPL_' + item.type }}" data="{{ node: item }}" />
     </block>
   </block>
-  <template a:elif="{{root.props.<%=TEMPLATE_PROP%> > 0}}" is="{{'TPL_' + root.props.<%=TEMPLATE_PROP%>}}" data="{{ node: root }}" />
+  <template a:elif="{{root.props.<%=TEMPLATE_ID%> > 0}}" is="{{'TPL_' + root.props.<%=TEMPLATE_ID%>}}" data="{{ node: root }}" />
   <template a:else is="{{ 'TPL_' + root.type }}" data="{{ node: root }}" />
 </template>

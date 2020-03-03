@@ -1,7 +1,6 @@
 import * as t from '@babel/types';
 import { NodePath } from '@babel/traverse';
-import { TEMPLATE_ID_ATTRIBUTE_NAME } from '../constants';
-import { ENTRY_ATTRIBUTE_NAME } from '../constants';
+import { TEMPLATE_ID, ENTRY } from '../constants';
 import { createTemplate, templateInfoSet } from '../render/templates';
 import * as helpers from '../helpers';
 
@@ -35,7 +34,7 @@ function shouldBeTemplate(path: NodePath<t.JSXElement>) {
  */
 function isEntryPath(node: t.JSXElement) {
   return !!node.openingElement.attributes.find(
-    attr => t.isJSXAttribute(attr) && attr.name.name === ENTRY_ATTRIBUTE_NAME
+    attr => t.isJSXAttribute(attr) && attr.name.name === ENTRY
   );
 }
 
@@ -59,10 +58,7 @@ function markTemplateID(element: t.JSXOpeningElement) {
   if (!templateID) {
     templateID = generateID();
     element.attributes.push(
-      t.jsxAttribute(
-        t.jsxIdentifier(TEMPLATE_ID_ATTRIBUTE_NAME),
-        t.stringLiteral(templateID)
-      )
+      t.jsxAttribute(t.jsxIdentifier(TEMPLATE_ID), t.stringLiteral(templateID))
     );
   }
 

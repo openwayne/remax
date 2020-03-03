@@ -74,7 +74,5 @@ export default function(
     tag,
     stringPath(dataPath),
     attributes
-  )} >
-  ${children}
-</${tag}>\n`;
+  )}>${children}</${tag}>\n`;
 }

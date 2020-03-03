@@ -1,10 +1,5 @@
 import * as t from '@babel/types';
-import {
-  TEMPLATE_ID_ATTRIBUTE_NAME,
-  REACT_KEY_ATTRIBUTE_NAME,
-  LEAF_ATTRIBUTE_NAME,
-  ENTRY_ATTRIBUTE_NAME,
-} from '../../constants';
+import { TEMPLATE_ID, REACT_KEY, LEAF, ENTRY } from '../../constants';
 import API from '../../../../../../API';
 
 /**
@@ -81,17 +76,27 @@ export function createAttributesTemplate(
   } else {
     template = (attributes as t.JSXAttribute[])
       // template id 不渲染
-      .filter(attr => attr.name.name !== TEMPLATE_ID_ATTRIBUTE_NAME)
       // react "key" 属性 不渲染
-      .filter(attr => attr.name.name !== REACT_KEY_ATTRIBUTE_NAME)
       // leaf 属性 不渲染
-      .filter(attr => attr.name.name !== LEAF_ATTRIBUTE_NAME)
       // entry 属性 不渲染
-      .filter(attr => attr.name.name !== ENTRY_ATTRIBUTE_NAME)
+      .filter(
+        attr =>
+          ![TEMPLATE_ID, REACT_KEY, LEAF, ENTRY].find(k => k === attr.name.name)
+      )
       .map(attr => {
-        // t.JSXNamespacedName 的 case 暂不处理
-        const name = attr.name.name as string;
-        const prop = hostComponent?.alias?.[name] ?? name;
+        const name = attr.name;
+        let attrName = '';
+
+        if (t.isJSXIdentifier(name)) {
+          attrName = name.name;
+        }
+
+        if (t.isJSXNamespacedName(name)) {
+          attrName = name.namespace.name + ':' + name.name.name;
+        }
+
+        const prop = hostComponent?.alias?.[attrName] ?? attrName;
+
         return [
           prop,
           createAttributeValueTemplate(prop, dataPath, attr.value as any),

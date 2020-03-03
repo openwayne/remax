@@ -1,6 +1,6 @@
 import * as t from '@babel/types';
 import { NodePath } from '@babel/traverse';
-import { TEMPLATE_ID_ATTRIBUTE_NAME, LEAF_ATTRIBUTE_NAME } from './constants';
+import { BLOCK, EXPRESSION_BLOCK, LEAF, TEMPLATE_ID } from './constants';
 
 /**
  * 从 JSXElement 中取出 Host Component 的名称
@@ -52,7 +52,7 @@ export function isHostComponentElement(node: t.JSXElement, path: NodePath) {
     if (!binding) {
       // block 标签也是 Host Component
       // expression-block 不渲染，但是也算 Host Component
-      if (tag === 'block' || tag === 'expression-block') {
+      if (tag === BLOCK || tag === EXPRESSION_BLOCK) {
         return true;
       }
 
@@ -113,7 +113,7 @@ export function isHostComponentElement(node: t.JSXElement, path: NodePath) {
  * @param path NodePath
  */
 export function isExpressionBlock(path: any) {
-  return path?.node?.openingElement?.name?.name === 'expression-block';
+  return path?.node?.openingElement?.name?.name === EXPRESSION_BLOCK;
 }
 
 /**
@@ -195,10 +195,9 @@ export function getAttributeByName(
  * @returns
  */
 export function getLeafAttribute(element: t.JSXOpeningElement) {
-  const attribute = getAttributeByName(
-    LEAF_ATTRIBUTE_NAME,
-    element.attributes
-  ) as t.JSXAttribute | undefined;
+  const attribute = getAttributeByName(LEAF, element.attributes) as
+    | t.JSXAttribute
+    | undefined;
 
   return attribute;
 }
@@ -211,10 +210,7 @@ export function getLeafAttribute(element: t.JSXOpeningElement) {
  * @returns
  */
 export function getTemplateID(element: t.JSXOpeningElement) {
-  const attribute: any = getAttributeByName(
-    TEMPLATE_ID_ATTRIBUTE_NAME,
-    element.attributes
-  );
+  const attribute: any = getAttributeByName(TEMPLATE_ID, element.attributes);
 
   return attribute?.value?.value;
 }
@@ -291,7 +287,7 @@ export function wrappedByExpressionBlock(
     return;
   }
 
-  wrappedByElement('expression-block', node, path);
+  wrappedByElement(EXPRESSION_BLOCK, node, path);
 }
 
 /**
@@ -307,8 +303,8 @@ export function replacedWithBlock(
 ) {
   path.replaceWith(
     t.jsxElement(
-      t.jsxOpeningElement(t.jsxIdentifier('block'), []),
-      t.jsxClosingElement(t.jsxIdentifier('block')),
+      t.jsxOpeningElement(t.jsxIdentifier(BLOCK), []),
+      t.jsxClosingElement(t.jsxIdentifier(BLOCK)),
       node.children,
       false
     )

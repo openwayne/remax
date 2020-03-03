@@ -2,7 +2,7 @@ import * as path from 'path';
 import { RemaxOptions, Meta } from 'remax-types';
 import ejs from 'ejs';
 import winPath from '../../../../../winPath';
-import { TEMPLATE_ID_ATTRIBUTE_NAME } from '../constants';
+import { TEMPLATE_ID } from '../constants';
 import { templateInfoSet } from './templates';
 
 export async function renderPage(
@@ -29,7 +29,7 @@ export async function renderPage(
   renderOptions.baseTemplate = winPath(
     path.relative(path.dirname(pageFile), `base${meta.template.extension}`)
   );
-  renderOptions.TEMPLATE_PROP = TEMPLATE_ID_ATTRIBUTE_NAME;
+  renderOptions.TEMPLATE_ID = TEMPLATE_ID;
 
   let code: string = await ejs.renderFile(meta.ejs.page, renderOptions, {
     rmWhitespace: options.compressTemplate,
@@ -57,7 +57,7 @@ export async function renderCommon(
   const templates = templateInfoSet.values();
 
   renderOptions.templates = templates;
-  renderOptions.TEMPLATE_PROP = TEMPLATE_ID_ATTRIBUTE_NAME;
+  renderOptions.TEMPLATE_ID = TEMPLATE_ID;
 
   let code: string = await ejs.renderFile(meta.ejs.base!, renderOptions, {
     rmWhitespace: options.compressTemplate,

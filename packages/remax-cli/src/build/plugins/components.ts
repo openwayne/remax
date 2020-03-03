@@ -3,10 +3,7 @@ import { NodePath } from '@babel/traverse';
 import { kebabCase, cloneDeep } from 'lodash';
 import API from '../../API';
 import { RemaxOptions } from '../..';
-import {
-  LEAF_ATTRIBUTE_NAME,
-  ENTRY_ATTRIBUTE_NAME,
-} from './compiler/static/constants';
+import { LEAF, ENTRY } from './compiler/static/constants';
 
 export interface Component {
   id: string;
@@ -108,8 +105,8 @@ function registerProps(componentName: string, node?: t.JSXElement) {
         // 无需收集 slot 字段
         .filter(p => p !== 'slot')
         // 静态编译辅助字段
-        .filter(p => p !== LEAF_ATTRIBUTE_NAME)
-        .filter(p => p !== ENTRY_ATTRIBUTE_NAME)
+        .filter(p => p !== LEAF)
+        .filter(p => p !== ENTRY)
         .filter(Boolean)
         .map(prop => hostComponent?.alias?.[prop] || prop)
     ),

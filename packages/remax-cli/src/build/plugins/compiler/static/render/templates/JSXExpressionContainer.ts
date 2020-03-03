@@ -1,7 +1,7 @@
 import * as t from '@babel/types';
 import * as helpers from '../../helpers';
 import stringPath from './stringPath';
-import { TEMPLATE_ID_ATTRIBUTE_NAME } from '../../constants';
+import { TEMPLATE_ID } from '../../constants';
 
 /**
  * 创建 JSXExpressionContainer 对应的模板
@@ -35,11 +35,11 @@ export default function JSXExpressionContainer(
 
   return `<block a:if="{{${nodePath}.children}}">
   <block a:for="{{${nodePath}.children || []}}" key="{{item.id}}">
-    <template a:if="{{item.props.${TEMPLATE_ID_ATTRIBUTE_NAME} > 0}}" is="{{'TPL_' + item.props.${TEMPLATE_ID_ATTRIBUTE_NAME}}}" data="{{ node: item }}" />
+    <template a:if="{{item.props.${TEMPLATE_ID} > 0}}" is="{{'TPL_' + item.props.${TEMPLATE_ID}}}" data="{{ node: item }}" />
     <template a:else is="{{ 'TPL_' + item.type }}" data="{{ node: item }}" />
   </block>
 </block>
-<template a:elif="{{${nodePath}.props.${TEMPLATE_ID_ATTRIBUTE_NAME} > 0}}" is="{{'TPL_' + ${nodePath}.props.${TEMPLATE_ID_ATTRIBUTE_NAME}}}" data="{{ node: ${nodePath} }}" />
+<template a:elif="{{${nodePath}.props.${TEMPLATE_ID} > 0}}" is="{{'TPL_' + ${nodePath}.props.${TEMPLATE_ID}}}" data="{{ node: ${nodePath} }}" />
 <template a:else is="{{ 'TPL_' + ${nodePath}.type }}" data="{{ node: ${nodePath} }}" />
 `;
 }

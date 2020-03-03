@@ -71,6 +71,7 @@ export default function Index() {
         {showPlainText && plainText} {showPlainText && '第二段'}{' '}
         {showPlainText && plainText}
       </Text>
+      <View ns:attr="1" />
     </>
   );
 }
